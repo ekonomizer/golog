@@ -69,20 +69,20 @@ import (
     "fmt"
     "os"
 
-    "gitlab2.sqtools.ru/go-pkg/logging"
+    "github.com/ekonomizer/golog"
 )
 
 type Service struct {
-    log logging.Logger
+    log golog.Logger
 }
 
 func NewService() *Service {
-    logging.Init(logging.Params{
+    golog.Init(golog.Params{
         Writer: os.Stderr,
     })
 
     return &Service{
-        log: logging.NewLogger("service"),
+        log: golog.NewLogger("service"),
     }
 }
 
@@ -119,7 +119,7 @@ import (
     "log/syslog"
     "github.com/pkg/errors"
 
-    "gitlab2.sqtools.ru/go-pkg/logging"
+    "github.com/ekonomizer/golog"
 )
 
 logWriter, err := syslog.New(syslog.LOG_NOTICE, "service_name")
@@ -128,11 +128,11 @@ if err != nil {
     return errors.Wrap(err, "unable to create syslog writer")
 }
 
-logging.Init(logging.Params{
+golog.Init(golog.Params{
     Writer: logWriter,
 })
 
-log := logging.NewLogger("service")
+log := golog.NewLogger("service")
 
 log.Info("I'm going to syslog")
 ```
