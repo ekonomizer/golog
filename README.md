@@ -7,7 +7,7 @@
 
 ```toml
 [[constraint]]
-  name = "gitlab2.sqtools.ru/go-pkg/logging"
+  name = "github.com/ekonomizer/logging"
   source = "ssh://git@github.com:ekonomizer/golog.git"
   version = "0.1.3"
 ```
