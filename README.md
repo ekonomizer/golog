@@ -7,7 +7,7 @@
 
 ```toml
 [[constraint]]
-  name = "github.com/ekonomizer/logging"
+  name = "github.com/ekonomizer/golog"
   source = "ssh://git@github.com:ekonomizer/golog.git"
   version = "0.1.3"
 ```
@@ -16,7 +16,7 @@
 
 Предельно простой логгер реализованный поверх logutils (https://github.com/hashicorp/logutils), позволяющий писать в `os.Stderr`, `syslog` и вообще куда угодно, если оно реализует интерфейс `io.Writer`.
 
-Параметры логгера задаются один раз вызовом метода `Init` и передачи в него структуры `logging.Params`:
+Параметры логгера задаются один раз вызовом метода `Init` и передачи в него структуры `logger.Params`:
 
 ```go
 // Params для логгера
@@ -73,16 +73,16 @@ import (
 )
 
 type Service struct {
-    log golog.Logger
+    log logger.Logger
 }
 
 func NewService() *Service {
-    golog.Init(golog.Params{
+    logger.Init(logger.Params{
         Writer: os.Stderr,
     })
 
     return &Service{
-        log: golog.NewLogger("service"),
+        log: logger.NewLogger("service"),
     }
 }
 
@@ -128,11 +128,11 @@ if err != nil {
     return errors.Wrap(err, "unable to create syslog writer")
 }
 
-golog.Init(golog.Params{
+logger.Init(logger.Params{
     Writer: logWriter,
 })
 
-log := golog.NewLogger("service")
+log := logger.NewLogger("service")
 
 log.Info("I'm going to syslog")
 ```
