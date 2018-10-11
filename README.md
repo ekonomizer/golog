@@ -1,7 +1,5 @@
 # Библиотека для организации логгирования в приложениях на Go
 
-[Документация (godoc)](http://internals.doc.socialquantum.com:8080/pkg/gitlab2.sqtools.ru/go-pkg/logging/)
-
 
 ## Установка
 
